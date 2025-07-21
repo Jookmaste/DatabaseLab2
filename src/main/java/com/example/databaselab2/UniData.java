@@ -123,12 +123,61 @@ public class UniData {
         return field;
     }
 
+    public void replaceEmptyScoresWithZero() {
+        if (academicRepScore == null || academicRepScore.trim().isEmpty()) academicRepScore = "0";
+        if (employerRepScore == null || employerRepScore.trim().isEmpty()) employerRepScore = "0";
+        if (facultyStudentScore == null || facultyStudentScore.trim().isEmpty()) facultyStudentScore = "0";
+        if (citationsScore == null || citationsScore.trim().isEmpty()) citationsScore = "0";
+        if (intlFacultyScore == null || intlFacultyScore.trim().isEmpty()) intlFacultyScore = "0";
+        if (intlStudentsScore == null || intlStudentsScore.trim().isEmpty()) intlStudentsScore = "0";
+        if (intlResearchScore == null || intlResearchScore.trim().isEmpty()) intlResearchScore = "0";
+        if (employmentScore == null || employmentScore.trim().isEmpty()) employmentScore = "0";
+        if (sustainabilityScore == null || sustainabilityScore.trim().isEmpty()) sustainabilityScore = "0";
+        if (overallScore == null || overallScore.trim().isEmpty()) overallScore = "0";
+    }
+
+    public void roundScores() {
+
+        academicRepScore = roundScoreField(academicRepScore);
+        employerRepScore = roundScoreField(employerRepScore);
+        facultyStudentScore = roundScoreField(facultyStudentScore);
+        citationsScore = roundScoreField(citationsScore);
+        intlFacultyScore = roundScoreField(intlFacultyScore);
+        intlStudentsScore = roundScoreField(intlStudentsScore);
+        intlResearchScore = roundScoreField(intlResearchScore);
+        employmentScore = roundScoreField(employmentScore);
+        sustainabilityScore = roundScoreField(sustainabilityScore);
+        overallScore = roundScoreField(overallScore);
+    }
+
+    private String roundScoreField(String value) {
+        if (value == null || value.trim().isEmpty()) return value;
+        try {
+            double d = Double.parseDouble(value);
+            return String.valueOf(Math.round(d));
+        } catch (NumberFormatException e) {
+            return value;
+        }
+    }
+
     // Getters (add as needed)
     public String getInstitutionName() {
         return institutionName;
     }
 
+    public void setInstitutionName(String institutionName) {
+        this.institutionName = institutionName;
+    }
+
     public String getCountry() {
         return country;
+    }
+
+    public String getRank2024() {
+        return rank2024;
+    }
+
+    public String getRank2023() {
+        return rank2023;
     }
 }

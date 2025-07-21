@@ -46,7 +46,7 @@ public class Main {
          * - Overall SCORE: Double
          */
 
-        String inputFile = "C:\\Users\\CAMT\\Desktop\\2024 QS World University Rankings 1.1 (For qs.com).csv";
+        String inputFile = "C:\\Users\\Admin\\OneDrive\\Desktop\\2024 QS World University Rankings 1.1 (For qs.com).csv";
         String outputFile = "QS_World University Ranking 2024.csv";
         List<UniData> universities = new ArrayList<>();
         String header = "";
@@ -86,6 +86,16 @@ public class Main {
                 "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""
         );
         universities.add(chiangMaiUni);
+
+        for (UniData uni : universities) {
+            uni.replaceEmptyScoresWithZero();
+            uni.roundScores();
+        }
+
+        universities.removeIf(uni -> uni.getRank2024().contains("-"));
+        universities.removeIf(uni -> uni.getRank2023().contains("-"));
+
+        tolowercase(universities);
 
         // Write to new file
         System.out.println("Writing to new CSV file...");
@@ -136,5 +146,11 @@ public class Main {
          *    - No normalization
          *    - Increased storage space
          */
+    }
+    public static void tolowercase(List<UniData> universities) {
+        for (UniData uni : universities) {
+            String lowerCaseName = uni.getInstitutionName().toLowerCase();
+            uni.setInstitutionName(lowerCaseName);
+        }
     }
 }
