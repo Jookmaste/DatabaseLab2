@@ -47,7 +47,7 @@ public class Main {
          */
 
         String inputFile = "C:\\Users\\Admin\\OneDrive\\Desktop\\2024 QS World University Rankings 1.1 (For qs.com).csv";
-        String outputFile = "QS_World University Ranking 2024.csv";
+        String outputFile = "QS-World-University-Rankings-2024_updated.csv";
         List<UniData> universities = new ArrayList<>();
         String header = "";
 
@@ -96,6 +96,8 @@ public class Main {
         universities.removeIf(uni -> uni.getRank2023().contains("-"));
 
         tolowercase(universities);
+
+        Collections.sort(universities);
 
         // Write to new file
         System.out.println("Writing to new CSV file...");

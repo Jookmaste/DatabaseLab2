@@ -1,6 +1,6 @@
 package com.example.databaselab2;
 
-public class UniData {
+public class UniData implements Comparable<UniData> {
     private String rank2024;
     private String rank2023;
     private String institutionName;
@@ -158,6 +158,11 @@ public class UniData {
         } catch (NumberFormatException e) {
             return value;
         }
+    }
+
+    @Override
+    public int compareTo(UniData x){
+        return this.institutionName.compareToIgnoreCase(x.institutionName);
     }
 
     // Getters (add as needed)
